@@ -1,12 +1,17 @@
 package com.banyan.algorithm.mergesort
 
 import com.banyan.algorithm.CalculateInterface
+import com.banyan.algorithm.utils.LogUtil
+import com.banyan.algorithm.utils.print
 
 /**
  * 归并排序
  * 分解待排序的数组成两个各具 n/2 个元素的子数组，递归调用归并排序两个子数组，合并两个已排序的子数组成一个已排序的数组。
  */
-object MergeSort : CalculateInterface{
+object MergeSort : CalculateInterface {
+
+    private val TAG = "MergeSort"
+
     override fun calculate(arr: IntArray) {
         val temp = IntArray(arr.size)
         internalMergeSort(arr, temp, 0, arr.size - 1)
@@ -14,6 +19,7 @@ object MergeSort : CalculateInterface{
 
     private fun internalMergeSort(arr: IntArray, temp: IntArray, left: Int, right: Int) {
         // 当left == right时，不需要再划分
+        LogUtil.i(TAG, "\ninternalMergeSort\narr:${arr.print()}\ntemp:${temp.print()}\nleft:$left\nright:$right")
         if (left < right) {
             val mid = (left + right) / 2
             internalMergeSort(arr, temp, left, mid)
@@ -24,6 +30,7 @@ object MergeSort : CalculateInterface{
 
     // 合并两个有序子序列
     private fun mergeSortedArray(arr: IntArray, temp: IntArray, left: Int, mid: Int, right: Int) {
+        LogUtil.i(TAG, "\nmergeSortedArray\narr:${arr.print()}\ntemp:${temp.print()}\nleft:$left\nright:$right\nmid:$mid")
         var i = left
         var j = mid + 1
         var k = 0
