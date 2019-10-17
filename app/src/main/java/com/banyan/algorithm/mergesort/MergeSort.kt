@@ -35,7 +35,7 @@ object MergeSort : CalculateInterface {
         var j = mid + 1
         var k = 0
         while (i <= mid && j <= right) {
-            temp[k++] = if (arr[i] < arr[j]) arr[i++] else arr[j++]
+            temp[k++] = if (arr[i] > arr[j]) arr[i++] else arr[j++]//通过修改这里的判断可以改变升降序
         }
         while (i <= mid) {
             temp[k++] = arr[i++]

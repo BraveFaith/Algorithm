@@ -15,6 +15,15 @@
             android:text="数据:10,15,3,4,81,64,52,2,11,9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <View
+            android:background="#dddddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="比较排序"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -35,6 +44,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
+        <View
+            android:background="#dddddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="线性排序"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_4"
+                android:text="计数排序"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_5"
+                android:text="桶排序"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <View
+            android:background="#dddddd"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
         <TextView
             android:id="@+id/tv_2"
             android:padding="10dp"

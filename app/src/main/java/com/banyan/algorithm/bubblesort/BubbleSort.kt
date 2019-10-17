@@ -15,7 +15,7 @@ object BubbleSort : CalculateInterface {
             // 增加一个swap的标志，当前一轮没有进行交换时，说明数组已经有序
             swap = false
             for (j in 0 until i) { // 从第一个元素到第i个元素
-                if (arr[j] > arr[j + 1]) {
+                if (arr[j] > arr[j + 1]) {//通过修改这里的判断可以改变升降序
                     temp = arr[j]
                     arr[j] = arr[j + 1]
                     arr[j + 1] = temp
