@@ -196,12 +196,98 @@
                 android:text="平衡二叉树" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
         <TextView
             android:id="@+id/tv_3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="计算结果"
-            android:padding="10dp"/>
+            android:padding="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#dddddd" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="翻转链表" />
+
+            <Button
+                android:id="@+id/btn_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中间元素" />
+
+            <Button
+                android:id="@+id/btn_19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="判断是否为循环链表" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btn_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="归并排序" />
+
+            <Button
+                android:id="@+id/btn_21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快速排序" />
+
+            <Button
+                android:id="@+id/btn_22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除倒数第n个节点" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="两个链表是否相交" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd" />
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="计算结果"
+            android:padding="10dp" />
 
     </LinearLayout>
 

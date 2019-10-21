@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.banyan.algorithm.bubblesort.BubbleSort
 import com.banyan.algorithm.bucketsort.BucketSort
 import com.banyan.algorithm.countsort.CountSort
+import com.banyan.algorithm.listnodesort.ListNode
+import com.banyan.algorithm.listnodesort.ListNodeSort
 import com.banyan.algorithm.mergesort.MergeSort
 import com.banyan.algorithm.quicksort.QuickSort
 import com.banyan.algorithm.treenodesort.TreeNode
@@ -12,9 +14,7 @@ import com.banyan.algorithm.treenodesort.TreeNodeSort
 import com.banyan.algorithm.utils.LogUtil
 import com.banyan.algorithm.utils.print
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 import kotlin.random.Random
-import kotlin.random.nextUInt
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     private var mArrayData1: MutableList<Int> = mutableListOf()
 
     private var mTreeNode: TreeNode? = null
+
+    private var mListNode: ListNode? = null
+
+    private var mListNode2: ListNode? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,19 @@ class MainActivity : AppCompatActivity() {
         for (i in 0..10) {
             createTreeNode(mTreeNode)
         }
+
+        mListNode = ListNode(15)
+        var tempListNode: ListNode = createListNode(mListNode)
+        for (i in 0..10) {
+            tempListNode = createListNode(tempListNode)
+        }
+    }
+
+    private fun createListNode(root: ListNode?): ListNode {
+        val random = Random.nextInt(30)
+        val node = ListNode(random)
+        root?.next = node
+        return node
     }
 
 
@@ -173,30 +190,57 @@ class MainActivity : AppCompatActivity() {
 
         btn_13.setOnClickListener {
             val max = TreeNodeSort.getMax(mTreeNode)
-
             tv_3.text = "最大值:$max"
-
         }
 
         btn_14.setOnClickListener {
             val maxDeep = TreeNodeSort.maxDepth(mTreeNode)
-
             tv_3.text = "最大深度:$maxDeep"
-
         }
 
         btn_15.setOnClickListener {
             val minDeep = TreeNodeSort.minDepth(mTreeNode)
-
             tv_3.text = "最小深度:$minDeep"
-
         }
 
         btn_16.setOnClickListener {
             val balanced = TreeNodeSort.isBalanced(mTreeNode)
-
             tv_3.text = "平衡二叉树:$balanced"
+        }
 
+        btn_17.setOnClickListener {
+            mListNode = ListNodeSort.reverse(mListNode)
+            tv_4.text = "翻转链表:${mListNode?.print()}"
+        }
+
+        btn_18.setOnClickListener {
+            val middleNode = ListNodeSort.findMiddle(mListNode)
+            tv_4.text = "中间元素:${middleNode?.value}"
+        }
+
+        btn_19.setOnClickListener {
+            val isCycle = ListNodeSort.hasCycle(mListNode)
+            tv_4.text = "判断是否为循环链表:$isCycle"
+        }
+
+        btn_20.setOnClickListener {
+            mListNode = ListNodeSort.sortMergeList(mListNode)
+            tv_4.text = "归并排序:${mListNode?.print()}"
+        }
+
+        btn_21.setOnClickListener {
+            mListNode = ListNodeSort.sortQuickList(mListNode)
+            tv_4.text = "快速排序:${mListNode?.print()}"
+        }
+
+        btn_22.setOnClickListener {
+            mListNode2 = ListNodeSort.removeNthFromEnd(mListNode, 2)
+            tv_4.text = "快速排序:${mListNode?.print()}"
+        }
+
+        btn_23.setOnClickListener {
+            val result = ListNodeSort.getIntersectionNode(mListNode, mListNode2)
+            tv_4.text = "快速排序:${result?.print()}"
         }
     }
 }
