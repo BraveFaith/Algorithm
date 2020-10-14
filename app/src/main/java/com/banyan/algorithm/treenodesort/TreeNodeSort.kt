@@ -1,6 +1,7 @@
 package com.banyan.algorithm.treenodesort
 
 import com.banyan.algorithm.utils.LogUtil
+import java.sql.Array
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -9,36 +10,37 @@ import kotlin.collections.ArrayList
  */
 object TreeNodeSort {
     private val TAG = "TreeNodeSort"
+
     /**---------------------顺序遍历------------------------------*/
     // 先序遍历: 根->左->右
-    fun preTraverse(root: TreeNode?,stringBuffer: StringBuffer) {
+    fun preTraverse(root: TreeNode?, stringBuffer: StringBuffer) {
         if (root != null) {
-            LogUtil.i(TAG,"preTraverse:${root.value}")
+            LogUtil.i(TAG, "preTraverse:${root.value}")
             stringBuffer.append(root.value)
             stringBuffer.append(",")
-            preTraverse(root.left,stringBuffer)
-            preTraverse(root.right,stringBuffer)
+            preTraverse(root.left, stringBuffer)
+            preTraverse(root.right, stringBuffer)
         }
 
     }
 
     // 中序遍历: 左->根->右
-    fun inTraverse(root: TreeNode?,stringBuffer: StringBuffer) {
+    fun inTraverse(root: TreeNode?, stringBuffer: StringBuffer) {
         if (root != null) {
-            inTraverse(root.left,stringBuffer)
-            LogUtil.i(TAG,"preTraverse:${root.value}")
+            inTraverse(root.left, stringBuffer)
+            LogUtil.i(TAG, "preTraverse:${root.value}")
             stringBuffer.append(root.value)
             stringBuffer.append(",")
-            inTraverse(root.right,stringBuffer)
+            inTraverse(root.right, stringBuffer)
         }
     }
 
     // 后序遍历: 左->右->根
-    fun postTraverse(root: TreeNode?,stringBuffer: StringBuffer) {
+    fun postTraverse(root: TreeNode?, stringBuffer: StringBuffer) {
         if (root != null) {
-            postTraverse(root.left,stringBuffer)
-            postTraverse(root.right,stringBuffer)
-            LogUtil.i(TAG,"preTraverse:${root.value}")
+            postTraverse(root.left, stringBuffer)
+            postTraverse(root.right, stringBuffer)
+            LogUtil.i(TAG, "preTraverse:${root.value}")
             stringBuffer.append(root.value)
             stringBuffer.append(",")
         }
@@ -148,6 +150,29 @@ object TreeNodeSort {
         return result
     }
 
+    /**---------------------中序遍历线索化------------------------------*/
+    private var preTreeNode: TreeNode? = null
+    fun inTraverseThreading(current: TreeNode?) {
+        preTreeNode = null
+        innerInTraverseThreading(current)
+    }
+
+    private fun innerInTraverseThreading(current: TreeNode?) {
+        if (current != null) {
+            innerInTraverseThreading(current.left)
+            LogUtil.i(TAG, "current:${current.value},preTreeNode:${preTreeNode?.value}")
+            if (current.left == null) {
+                current.leftTag = TreeNodeTag.Thread
+                current.left = preTreeNode
+            }
+            if (preTreeNode?.right == null) {
+                preTreeNode?.rightTag = TreeNodeTag.Thread
+                preTreeNode?.right = current
+            }
+            preTreeNode = current
+            innerInTraverseThreading(current.right)
+        }
+    }
 
     /**---------------------左右翻转------------------------------*/
     fun invert(root: TreeNode?) {
@@ -217,5 +242,61 @@ object TreeNodeSort {
         return if (left == -1 || right == -1 || Math.abs(left - right) > 1) {
             -1
         } else Math.max(left, right) + 1
+    }
+
+    /** 二叉排序树*/
+    /**
+     * 查找
+     * @param target 目标
+     * @param current 当前的节点
+     */
+    fun searchBST(target: TreeNode, current: TreeNode): TreeNode {
+        if (target.value == current.value) {
+            return current
+        }
+        return if (target.value > current.value) {
+            if (current.right != null) {
+                searchBST(target, current.right!!)
+            } else {
+                current
+            }
+        } else {
+            if (current.left != null) {
+                searchBST(target, current.left!!)
+            } else {
+                current
+            }
+        }
+    }
+
+    /**
+     * 插入
+     * @param target 目标
+     * @param current 当前节点
+     */
+    fun insertBST(target: TreeNode, current: TreeNode){
+        if (target.value > current.value) {
+            if (current.right != null) {
+                searchBST(target, current.right!!)
+            } else {
+                current.right = target
+            }
+        } else {
+            if (current.left != null) {
+                searchBST(target, current.left!!)
+            } else {
+                current.left = target
+            }
+        }
+    }
+
+    fun deleteBST(target: TreeNode,current: TreeNode){
+        val temp = searchBST(target, current)
+        if (temp.value != target.value){
+            return
+        }
+        if (temp.right == null && temp.left == null){
+
+        }
     }
 }
